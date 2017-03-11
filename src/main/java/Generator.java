@@ -18,7 +18,8 @@ public class Generator {
     public static int dateColumnWidth;
     public static String initialsColumn;
     public static int initialsColumnWidth;
-    public static String settingsPath = "C:\\Users\\DSizov\\IdeaProjects\\Generator\\settings.xml";
+    public static String settingsPath = "C:\\Users\\Elizaveta\\IdeaProjects\\Generator\\settings.xml";
+    public static String dataFilePath = "C:\\Users\\Elizaveta\\IdeaProjects\\Generator\\source-data.tsv";
     public static String line = "|";
     public static String sSep = "-";
     public static String pSep = "~";
@@ -42,7 +43,7 @@ public class Generator {
         start.printFirst();
         start.printSep();
         try {
-            BufferedReader bReader = new BufferedReader(new FileReader("C:\\Users\\DSizov\\IdeaProjects\\Generator\\source-data.tsv"));
+            BufferedReader bReader = new BufferedReader(new FileReader(dataFilePath));
             String str;
 
             while ((str = bReader.readLine()) != null) {
