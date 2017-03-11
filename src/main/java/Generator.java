@@ -10,12 +10,12 @@ import java.io.*;
  * Created by DSizov on 15.02.2017.
  */
 public class Generator {
-    public static int pWidth;
-    public static int pHeight;
-    public static String number;
-    public static int nWidth;
-    public static String date;
-    public static int dWidth;
+    public static int tableWidth;
+    public static int tableHeight;
+    public static String columnNumber;
+    public static int columnNumberWidth;
+    public static String columnDate;
+    public static int columnDateWidth;
     public static String fio;
     public static int fioWidth;
     public static String line = "|";
@@ -28,13 +28,13 @@ public class Generator {
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document =  builder.parse(new File("C:\\Users\\DSizov\\IdeaProjects\\Generator\\settings.xml"));
         document.getDocumentElement().normalize();
-        pWidth = Integer.parseInt(document.getElementsByTagName("width").item(0).getTextContent());
-        nWidth = Integer.parseInt(document.getElementsByTagName("width").item(1).getTextContent());
-        dWidth = Integer.parseInt(document.getElementsByTagName("width").item(2).getTextContent());
+        tableWidth = Integer.parseInt(document.getElementsByTagName("width").item(0).getTextContent());
+        columnNumberWidth = Integer.parseInt(document.getElementsByTagName("width").item(1).getTextContent());
+        columnDateWidth = Integer.parseInt(document.getElementsByTagName("width").item(2).getTextContent());
         fioWidth = Integer.parseInt(document.getElementsByTagName("width").item(3).getTextContent());
-        pHeight = Integer.parseInt(document.getElementsByTagName("height").item(0).getTextContent());
-        number = document.getElementsByTagName("title").item(0).getTextContent();
-        date = document.getElementsByTagName("title").item(1).getTextContent();
+        tableHeight = Integer.parseInt(document.getElementsByTagName("height").item(0).getTextContent());
+        columnNumber = document.getElementsByTagName("title").item(0).getTextContent();
+        columnDate = document.getElementsByTagName("title").item(1).getTextContent();
         fio = document.getElementsByTagName("title").item(2).getTextContent();
         Generator start = new Generator();
 
@@ -57,8 +57,8 @@ public class Generator {
         for (int i = 0; i < (nWidth-number.length()+1); i++){
             System.out.print(space);
         }
-        System.out.print(line+space+date);
-        for (int i = 0; i < (dWidth-date.length()+1); i++){
+        System.out.print(line+space+ columnDate);
+        for (int i = 0; i < (dWidth- columnDate.length()+1); i++){
             System.out.print(space);
         }
         System.out.print(line+space+fio);
@@ -69,7 +69,7 @@ public class Generator {
     }
 
     void printSep(){
-        for(int i=0;i<pWidth;i++)
+        for(int i = 0; i< tableWidth; i++)
             System.out.print(sSep);
     }
 
