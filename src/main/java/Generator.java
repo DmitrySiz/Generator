@@ -1,10 +1,16 @@
+import com.univocity.parsers.tsv.TsvParser;
+import com.univocity.parsers.tsv.TsvParserSettings;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
+
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
+import java.util.Arrays;
+import java.util.List;
+
 
 /**
  * Created by DSizov on 15.02.2017.
@@ -42,17 +48,14 @@ public class Generator {
 
         start.printFirst();
         start.printSep();
-        try {
-            BufferedReader bReader = new BufferedReader(new FileReader(dataFilePath));
-            String str;
 
-            while ((str = bReader.readLine()) != null) {
-                String [] data = str.split("\t");
-                System.out.println(data);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        TsvParserSettings settings = new TsvParserSettings();
+        settings.getFormat().setLineSeparator("\n");
+        TsvParser parser = new TsvParser(settings);
+        List<String[]> allRows = parser.parseAll(new File(dataFilePath),"UTF-16");
+        String[] first = allRows.get(0);
+        System.out.println(Arrays.toString(first));
+
     }
     void printFirst(){
         System.out.print(line+space+numberColumn);
